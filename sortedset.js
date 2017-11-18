@@ -87,8 +87,9 @@
    */
   SortedSet.prototype.get = function(startIndex, endIndex) {
     // TODO: Implement get method
+    // Return the elements between startIndex and endIndex(not including the endIndex)
     if(endIndex==null || endIndex==undefined){
-      retrun setArray[startIndex];
+      return setArray[startIndex];
     }
     else{
       return slice(startIndex,endIndex);
@@ -106,8 +107,17 @@
    */
   SortedSet.prototype.add = function(element) {
     // TODO: Implement add method
-    if(setArray.indexOf(element)==-1){
-      setArray.push(element);
+    if(setArray.indexOf(element)===-1){
+      for(var j=0;j<setArray.length;j++){
+        if(setArray[j]<element){
+          continue;
+        }
+        else{
+          break;
+        }
+      }
+      setArray.splice(j,0,element);
+      return setArray;
     }
   };
 
@@ -123,8 +133,10 @@
    */
   SortedSet.prototype.remove = function(element) {
     // TODO: Implement remove method
-    var idx= setArray.indexOf(element);
-    setArray.splice(idx,1);
+    var elementIndex= setArray.indexOf(element);
+    if(elementIndex!=-1){
+      setArray.splice(elementIndex,1);
+    }
   };
 
   /* Removes element at index location and returns the element
