@@ -74,6 +74,12 @@
    */
   SortedSet.prototype.contains = function(element) {
     // TODO: Implement contains method
+    if(setArray.indexOf(element)!=-1){
+      return true;
+    }
+    else{
+      return false;
+    }
   };
 
   /* Gets elements between startIndex and endIndex. If endIndex is omitted, a
@@ -81,6 +87,12 @@
    */
   SortedSet.prototype.get = function(startIndex, endIndex) {
     // TODO: Implement get method
+    if(endIndex==null || endIndex==undefined){
+      retrun setArray[startIndex];
+    }
+    else{
+      return slice(startIndex,endIndex);
+    }
   };
 
   /* Gets all items between specified value range. If exclusive is set, values
@@ -94,7 +106,11 @@
    */
   SortedSet.prototype.add = function(element) {
     // TODO: Implement add method
+    if(setArray.indexOf(element)==-1){
+      setArray.push(element);
+    }
   };
+
 
 
   /* BONUS MARKS AWARDED IF IMPLEMENTED
@@ -107,12 +123,15 @@
    */
   SortedSet.prototype.remove = function(element) {
     // TODO: Implement remove method
+    var idx= setArray.indexOf(element);
+    setArray.splice(idx,1);
   };
 
   /* Removes element at index location and returns the element
    */
   SortedSet.prototype.removeAt = function(index) {
     // TODO: Implement removeAt method
+    setArray.splice(index,1);
   };
 
   /* Removes elements that are larger than lower bound and smaller than upper
@@ -126,6 +145,9 @@
    */
   SortedSet.prototype.clear = function() {
     // TODO: Implement clear method
+    if(setArray.length>0){
+        setArray.length=0;
+    }
   };
 
   SortedSet.prototype.forEachAsync = function(callback, thisArg) {
