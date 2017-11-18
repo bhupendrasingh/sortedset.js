@@ -18,7 +18,14 @@
       // TODO: Handle the case when initial array is provided; if array has
       // elements of duplicate value, reduce down to one instance and sort the
       // elements in ascending order.
-      setArray = [];
+      initial.sort(function(a,b){
+          return a-b;
+      });
+
+      var uniqueElementsArray = initial.filter(function(ele,position){
+          return initial.indexOf(ele,position+1)===-1;
+      });
+      setArray = uniqueElementsArray.slice();
     } else {
       setArray = [];
     }
@@ -92,7 +99,7 @@
       return setArray[startIndex];
     }
     else{
-      return slice(startIndex,endIndex);
+      return setArray.slice(startIndex,endIndex+1);
     }
   };
 
@@ -101,6 +108,24 @@
    */
   SortedSet.prototype.getBetween = function(lbound, ubound, exclusive) {
     // TODO: Implement getBetween method
+    var tempArray = [];
+    if(exclusive){
+      for(var i=0;i<setArray.length;i++){
+        if(setArray[i]>lbound && setArray[i]<ubound){
+          tempArray.push(setArray[i]);
+        }
+      }
+      return tempArray;
+    }
+    else{
+      for(var i=0;i<setArray.length;i++){
+        if(setArray[i]>=lbound && setArray[i]<=ubound){
+          tempArray.push(setArray[i]);
+        }
+      }
+      return tempArray;
+    }
+   
   };
 
   /* Adds new element to the set if not already in set
