@@ -158,17 +158,24 @@
    */
   SortedSet.prototype.remove = function(element) {
     // TODO: Implement remove method
-    var elementIndex= setArray.indexOf(element);
-    if(elementIndex!=-1){
-      setArray.splice(elementIndex,1);
+    var elementIndex;
+    if(setArray.indexOf(element)!=-1){
+     elementIndex = setArray.indexOf(element);
     }
+    // var ele= setArray.indexOf(elementIndex);
+    setArray.splice(elementIndex,1);
+    return element;
   };
 
   /* Removes element at index location and returns the element
    */
   SortedSet.prototype.removeAt = function(index) {
     // TODO: Implement removeAt method
-    setArray.splice(index,1);
+    var elementToReturn=setArray[index];
+    if(setArray.length > index+1){
+      setArray.splice(index,1);
+    }
+    return elementToReturn;
   };
 
   /* Removes elements that are larger than lower bound and smaller than upper
@@ -184,6 +191,9 @@
     // TODO: Implement clear method
     if(setArray.length>0){
         setArray.length=0;
+    }
+    else{
+      return;
     }
   };
 
